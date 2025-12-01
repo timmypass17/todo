@@ -4,6 +4,127 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body></body>
+  <body>
+    <div id="app">
+      <div class="sidebar">
+        <h2>My Todo List</h2>
+        <ul class="task-buttons-container">
+          <li>
+            <button>
+              <img src="assets/calendar.svg" alt="Plus icon" />
+              <p>All</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <img src="assets/calendar.svg" alt="Plus icon" />
+              <p>Today</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <img src="assets/calendar.svg" alt="Plus icon" />
+              <p>Upcoming</p>
+            </button>
+          </li>
+          <li>
+            <button>
+              <img src="assets/calendar.svg" alt="Plus icon" />
+              <p>Completed</p>
+            </button>
+          </li>
+        </ul>
+
+        <div class="projects-container">
+          <div class="projects-container-title">
+            <h2>My Projects</h2>
+            <button class="plus-button">
+              <img src="assets/add.svg" alt="Plus icon" />
+            </button>
+          </div>
+          <ul class="projects">
+            <li>
+              <button>
+                <div>
+                  <img src="assets/tag.svg" alt="Pound icon" class="hashtag" />
+                  <p class="project-name">Default Project</p>
+                </div>
+                <p class="project-todo-count">2</p>
+              </button>
+            </li>
+            <li>
+              <button>
+                <div>
+                  <img src="assets/tag.svg" alt="Pound icon" class="hashtag" />
+                  <p class="project-name">The Odin Project</p>
+                </div>
+                <p class="project-todo-count">2</p>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <main id="content">
+        <h1>The Odin Project</h1>
+        <ul class="todos">
+          <li class="todo-item">
+            <button class="checkbox checked"></button>
+            <div class="todo-content">
+              <button>
+                <h2 class="todo-name crossed-out">Finish Project: Todo List</h2>
+                <div class="due-tag">
+                  <img src="assets/calendar.svg" />
+                  <p class="todo-due">Today</p>
+                </div>
+              </button>
+            </div>
+            <div class="todo-buttons">
+              <ul>
+                <li>
+                  <button><img src="assets/edit.svg" /></button>
+                  <button><img src="assets/calendar.svg" /></button>
+                  <button><img src="assets/chat.svg" /></button>
+                  <button><img src="assets/ellipsis.svg" /></button>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="todo-item">
+            <button class="checkbox"></button>
+            <div class="todo-content">
+              <button>
+                <h2 class="todo-name">Finish Project: Todo List</h2>
+                <div class="due-tag">
+                  <img src="assets/calendar.svg" />
+                  <p class="todo-due">Today</p>
+                </div>
+              </button>
+            </div>
+            <div class="todo-buttons">
+              <ul>
+                <li>
+                  <button><img src="assets/edit.svg" /></button>
+                  <button><img src="assets/calendar.svg" /></button>
+                  <button><img src="assets/chat.svg" /></button>
+                  <button><img src="assets/ellipsis.svg" /></button>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <button class="add-task-button">
+          <img src="assets/add.svg" alt="Plus icon" />
+          <p>Add task</p>
+        </button>
+      </main>
+    </div>
+  </body>
 </html>
