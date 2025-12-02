@@ -1,4 +1,7 @@
 :root {
+  --primary-color: red;
+  --primary-filter: invert(24%) sepia(79%) saturate(7497%) hue-rotate(356deg)
+    brightness(100%) contrast(117%);
   --sidebar-color: #fcfaf8;
   --gray-filter: invert(38%) sepia(1%) saturate(226%) hue-rotate(314deg)
     brightness(101%) contrast(86%);
@@ -14,14 +17,14 @@
 
 .checkbox {
   background-color: #fff;
-  border: 2px solid red;
+  border: 2px solid var(--primary-color);
   height: 24px;
   width: 24px;
   border-radius: 50%;
 }
 
 .checked {
-  background-color: red;
+  background-color: var(--primary-color);
   background-image: url(assets/check.svg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -95,18 +98,23 @@ button {
   font-weight: 500;
 }
 
-.projects button {
+.projects li {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 10px;
   width: 100%;
+  position: relative;
+}
+
+.projects li button {
+  flex: 1;
 }
 
 .projects li div {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 5px;
 }
 
@@ -117,8 +125,17 @@ button {
   border-radius: 4px;
 }
 
+.project-delete-btn {
+  position: absolute;
+  right: 0;
+  visibility: hidden;
+  margin-right: 4px;
+}
+
 .project-name {
   font-size: 14px;
+  flex: 1;
+  text-align: start;
 }
 
 .hashtag {
@@ -187,6 +204,55 @@ main {
 }
 
 .add-task-button img {
-  filter: invert(24%) sepia(79%) saturate(7497%) hue-rotate(356deg)
-    brightness(100%) contrast(117%);
+  filter: var(--primary-filter);
+}
+
+dialog {
+  margin: auto;
+  padding: 16px;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+dialog h1 {
+  font-size: 20px;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+dialog .buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+dialog button {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+dialog #cancel {
+  background-color: rgb(209, 209, 209);
+  color: rgb(41, 41, 41);
+}
+
+dialog #add {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.project-cell .project-delete-btn {
+  visibility: hidden;
+}
+
+.project-cell:hover .project-delete-btn {
+  visibility: visible;
+}
+
+.project-cell:hover .project-todo-count {
+  visibility: hidden;
 }

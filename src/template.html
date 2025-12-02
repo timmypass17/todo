@@ -13,6 +13,19 @@
   </head>
   <body>
     <div id="app">
+      <dialog id="dialog">
+        <form method="dialog">
+          <h1>Add Project</h1>
+          <div>
+            <label for="project-name">Name</label>
+            <input type="text" id="project-name" required />
+          </div>
+          <div class="buttons-container">
+            <button id="cancel" value="cancel">Cancel</button>
+            <button id="add" value="add">Add</button>
+          </div>
+        </form>
+      </dialog>
       <div class="sidebar">
         <h2>My Todo List</h2>
         <ul class="task-buttons-container">
@@ -45,7 +58,7 @@
         <div class="projects-container">
           <div class="projects-container-title">
             <h2>My Projects</h2>
-            <button class="plus-button">
+            <button class="add-project-button">
               <img src="assets/add.svg" alt="Plus icon" />
             </button>
           </div>
@@ -56,10 +69,13 @@
                   <img src="assets/tag.svg" alt="Pound icon" class="hashtag" />
                   <p class="project-name">Default Project</p>
                 </div>
-                <p class="project-todo-count">2</p>
+              </button>
+              <p class="project-todo-count">2</p>
+              <button class="project-options-btn">
+                <img src="assets/delete.svg" />
               </button>
             </li>
-            <li>
+            <!-- <li>
               <button>
                 <div>
                   <img src="assets/tag.svg" alt="Pound icon" class="hashtag" />
@@ -67,13 +83,13 @@
                 </div>
                 <p class="project-todo-count">2</p>
               </button>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
 
       <main id="content">
-        <h1>The Odin Project</h1>
+        <h1>The Odin Project 👋</h1>
         <ul class="todos">
           <li class="todo-item">
             <button class="checkbox checked"></button>
