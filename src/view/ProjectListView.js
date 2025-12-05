@@ -18,7 +18,7 @@ export class ProjectListView {
     });
   }
 
-  render(projects) {
+  updateUI(projects) {
     this.container.replaceChildren();
 
     projects.forEach((project) => {

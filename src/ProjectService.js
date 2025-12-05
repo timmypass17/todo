@@ -1,3 +1,6 @@
+// Service: Contains business logic, rules, validation. Uses repository.
+// - deals with purely class instances
+// https://www.baeldung.com/java-dao-vs-repository
 class ProjectService {
   constructor(projectRepository) {
     this.projectRepository = projectRepository;
@@ -13,6 +16,10 @@ class ProjectService {
 
   getProjects() {
     return this.projectRepository.getProjects();
+  }
+
+  getProject(id) {
+    return this.projectRepository.getProject(id);
   }
 
   deleteProject(id) {

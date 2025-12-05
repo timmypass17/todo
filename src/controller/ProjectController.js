@@ -13,23 +13,14 @@ export class ProjectController {
   }
 
   cacheDOM() {
-    this.addBtn = document.querySelector("#dialog #add");
-    this.input = document.querySelector("#dialog #project-name");
-    this.dialog = document.querySelector("#dialog");
+    this.addBtn = document.querySelector("#add-project-dialog #add");
+    this.input = document.querySelector("#add-project-dialog #project-name");
+    this.dialog = document.querySelector("#add-project-dialog");
   }
 
   bindEvents() {
     this.addBtn.addEventListener("click", () => {
-      const name = this.input.value.trim();
-      if (name === "") {
-        return;
-      }
-
-      const project = new Project(name);
-      this.projectService.addProject(project);
-      this.input.value = "";
-      this.updateUI();
-      this.dialog.close();
+      this.handleAddTask();
     });
 
     this.listView.onDelete = (id) => {
@@ -37,8 +28,21 @@ export class ProjectController {
     };
   }
 
+  handleAddTask() {
+    const name = this.input.value.trim();
+    if (name === "") {
+      return;
+    }
+
+    const project = new Project(name);
+    this.projectService.addProject(project);
+    this.input.value = "";
+    this.updateUI();
+    this.dialog.close();
+  }
+
   updateUI() {
     const projects = this.projectService.getProjects();
-    this.listView.render(projects);
+    this.listView.updateUI(projects);
   }
 }

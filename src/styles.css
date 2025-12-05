@@ -187,10 +187,15 @@ main {
   width: 1.5em;
 }
 
-.todo-content button {
+.todo-text-content button {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.todo-buttons {
+  display: flex;
+  gap: 4px;
 }
 
 .add-task-button {

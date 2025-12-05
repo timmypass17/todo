@@ -20,6 +20,7 @@ export class ProjectListCell {
     this.element = document.createElement("li");
 
     const btn = document.createElement("button");
+    btn.dataset.tab = project.id;
     const deleteBtn = document.createElement("button");
 
     const nameContainer = document.createElement("div");
