@@ -37,7 +37,7 @@ const projects = projectService.getProjects();
 
 let firstProject;
 if (projects.length === 0) {
-  projectService.addProject(new Project("Default"));
+  projectService.addProject(new Project("Hello World 👋"));
 }
 firstProject = projectService.getProjects()[0];
 
