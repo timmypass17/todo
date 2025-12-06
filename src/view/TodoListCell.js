@@ -3,6 +3,7 @@ import calendar from "../assets/calendar.svg";
 import chat from "../assets/chat.svg";
 import ellipsis from "../assets/ellipsis.svg";
 import trash from "../assets/delete.svg";
+import { parse, format } from "date-fns";
 
 export class TodoListCell {
   constructor(todo) {
@@ -18,6 +19,12 @@ export class TodoListCell {
     // --- Checkbox ---
     const checkboxBtn = document.createElement("button");
     checkboxBtn.classList.add("checkbox");
+
+    if (this.todo.isComplete) {
+      checkboxBtn.classList.add("checked");
+    } else {
+      checkboxBtn.classList.remove("checked");
+    }
 
     // --- Content wrapper ---
     const contentDiv = document.createElement("div");
@@ -37,7 +44,9 @@ export class TodoListCell {
 
     const dueP = document.createElement("p");
     dueP.classList.add("todo-due");
-    dueP.textContent = this.todo.dueDate || "No Date";
+
+    const dueDateFormatted = format(this.todo.dueDate, "MMMM d, yyyy");
+    dueP.textContent = dueDateFormatted || "No Date";
 
     // Build due-tag
     dueTagDiv.appendChild(dueIcon);

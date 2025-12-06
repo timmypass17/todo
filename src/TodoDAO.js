@@ -1,1 +1,1 @@
-class TodoDAO {}
+export class TodoDAO {}

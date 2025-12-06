@@ -90,23 +90,24 @@ sidebar.addEventListener("click", (e) => {
   const tab = tabEle.dataset.tab;
   switch (tab) {
     case "all":
-      todosController.updateUI("All", []);
+      const allTodos = todoService.getAllTodos();
+      todosController.updateUI("All", allTodos);
       break;
     case "today":
-      todosController.updateUI("Today", []);
+      const todayTodos = todoService.getTodayTodos();
+      todosController.updateUI("Today", todayTodos);
       break;
     case "upcoming":
-      todosController.updateUI("Upcoming", []);
+      const upcomingTodos = todoService.getUpcomingTodos();
+      todosController.updateUI("Upcoming", upcomingTodos);
       break;
     case "completed":
-      todosController.updateUI("Completed", []);
+      const completedTodos = todoService.getCompletedTodos();
+      todosController.updateUI("Completed", completedTodos);
       break;
     default:
       const projectId = tab;
-      console.log(projectId);
-      // Get todos from that projectId
       const project = projectService.getProject(projectId);
-      console.log(project);
       todosController.projectId = projectId;
       todosController.updateUI(project.name, project.todos);
       break;

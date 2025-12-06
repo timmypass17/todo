@@ -1,4 +1,6 @@
 import { Todo } from "../models/Todo";
+import { parse } from "date-fns";
+
 export class TodosController {
   // set up class
   constructor(projectService, todoService, view) {
@@ -19,9 +21,6 @@ export class TodosController {
     this.form = document.querySelector("#add-todo-dialog form");
     this.dialogCancelBtn = document.querySelector("#add-todo-dialog #cancel");
     this.dialogConfirmBtn = document.querySelector("#add-todo-dialog #add");
-
-    // this.dialog = document.querySelector("#add-todo-dialog");
-    // this.input = document.querySelector("#dialog #project-name");
   }
 
   bindEvents() {
@@ -41,12 +40,16 @@ export class TodosController {
         crypto.randomUUID(),
         formData.title,
         formData.description,
-        formData["due-date"],
-        formData.priority
+        parse(formData["due-date"], "yyyy-MM-dd", new Date()), // use local date
+        formData.priority,
+        false
       );
 
       this.todoService.addTodo(this.projectId, todo);
       this.todos.push(todo);
+      this.todos = this.todos.sort(
+        (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+      );
       this.updateUI(this.title, this.todos); // better to append single item instead of reload all
     });
 
@@ -57,19 +60,18 @@ export class TodosController {
       });
       this.updateUI(this.title, this.todos);
     };
+
+    this.view.listView.onCheckTodo = (todoId) => {
+      this.todoService.toggleTodo(todoId);
+      const index = this.todos.findIndex((t) => t.id == todoId);
+      if (index !== -1) {
+        this.todos[index].toggleCheck();
+        this.updateUI(this.title, this.todos);
+      }
+    };
   }
 
-  handleAddTodo() {
-    // const name = this.input.value.trim();
-    // if (name === "") {
-    //   return;
-    // }
-    // const project = new Project(name);
-    // this.projectService.addProject(project);
-    // this.input.value = "";
-    // this.updateUI();
-    // this.dialog.close();
-  }
+  handleAddTodo() {}
 
   updateUI(title, todos) {
     this.title = title;

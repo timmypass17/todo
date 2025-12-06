@@ -16,7 +16,14 @@ class ProjectRepository {
   addProject(project) {
     const projects = this.projectDAO.getProjects();
     const todos = project.todos.map((t) => {
-      return { id: t.id, title: t.title };
+      return {
+        id: t.id,
+        title: t.title,
+        description: t.description,
+        dueDate: t.dueDate,
+        priority: t.priority,
+        isComplete: t.isComplete,
+      };
     });
     projects.push({ id: project.id, name: project.name, todos: todos }); // safer to extract values we want since objects could change during runtime
     this.projectDAO.saveProjects(projects);
@@ -28,10 +35,7 @@ class ProjectRepository {
 
   getProject(id) {
     const data = this.projectDAO.getProject(id);
-    const todos = data.todos.map(
-      (t) => new Todo(t.id, t.title, t.description, t.dueDate, t.priority)
-    );
-    return new Project(data.name, todos, data.id);
+    return Project.fromJSON(data);
   }
 
   addTodo(projectId, todo) {
@@ -43,6 +47,9 @@ class ProjectRepository {
     }
 
     project.todos.push(todo);
+    project.todos = project.todos.sort(
+      (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+    );
 
     this.projectDAO.saveProjects(projects);
   }

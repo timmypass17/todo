@@ -5,6 +5,7 @@ import { Project } from "./models/Project.js";
 
 class ProjectDAO {
   saveProjects(projects) {
+    // handle plain objc and classes the same
     localStorage.setItem("projects", JSON.stringify(projects));
   }
 

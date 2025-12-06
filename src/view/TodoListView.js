@@ -6,13 +6,20 @@ export class TodoListView {
 
   bindEvents() {
     this.container.addEventListener("click", (e) => {
-      console.log(e.target);
       const deleteBtn = e.target.closest(".delete-todo-button");
       if (!deleteBtn) return;
       const cell = deleteBtn.closest(".todo-item");
       const id = cell.dataset.id;
       cell.remove();
       this.onDelete?.(id);
+    });
+
+    this.container.addEventListener("click", (e) => {
+      const checkBtn = e.target.closest(".checkbox");
+      if (!checkBtn) return;
+      const cell = checkBtn.closest(".todo-item");
+      const id = cell.dataset.id;
+      this.onCheckTodo(id);
     });
   }
 
